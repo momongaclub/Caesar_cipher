@@ -13,10 +13,10 @@ def load_sentences(fname):
 def convert_str(s, number):
     s = ord(s)
     s = s + number
-    if 20 <= s <= 126:
+    if 32 <= s <= 126:
         s = chr(s)
     else:
-        s = chr(s%126 + 19)
+        s = chr(s%126 + 31)
     return s
 
 
