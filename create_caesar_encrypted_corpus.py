@@ -10,19 +10,20 @@ def load_sentences(fname):
     return sentences
 
 
-def convert_str(s):
+def convert_str(s, number):
     s = ord(s)
-    s = s+2
-    s = chr(s)
-
+    s = s + number
+    if 20 <= s <= 126:
+        s = chr(s)
+    else:
+        s = chr(s%126 + 19)
     return s
-
 
 
 def encrypt_sentences(sentences, number):
     encrypted_sentences = []
     for sentence in sentences: 
-           encrypted_words = [convert_str(s) for s in sentence] # TODO insert \n
+           encrypted_words = [convert_str(s, number) for s in sentence] # TODO insert \n
            encrypted_sentence = ''.join(encrypted_words)
            encrypted_sentences.append(encrypted_sentence)
     return encrypted_sentences
@@ -37,7 +38,7 @@ def create_encrypted_corpus(encrypted_sentences):
 
 def main():
     corpus = sys.argv[1]
-    number = sys.argv[2]
+    number = int(sys.argv[2])
     sentences = load_sentences(corpus)
     encrypted_sentences = encrypt_sentences(sentences, number)
     create_encrypted_corpus(encrypted_sentences)
