@@ -13,7 +13,7 @@ def load_sentences(fname):
 def convert_str(s, number):
     s = ord(s)
     s = s + number
-    if 32 <= s <= 126:
+    if 32 <= s <= 126: # TODO change a CONSTvariable 
         s = chr(s)
     else:
         s = chr(s%126 + 31)
